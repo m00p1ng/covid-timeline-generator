@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    image: covid-timeline-api
+    command: 'yarn start:dev'
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+    networks:
+      - covid-timeline
+  database:
+    image: postgres:alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: covid-timeline
+    networks:
+      - covid-timeline
+volumes:
+  pgdata:
+networks:
+  covid-timeline:
