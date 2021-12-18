@@ -9,7 +9,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 
-import { Entry } from '../entries/entries.entity';
+import { Entry } from '../entries/entry.entity';
 
 @Entity()
 export class Patient extends BaseEntity {

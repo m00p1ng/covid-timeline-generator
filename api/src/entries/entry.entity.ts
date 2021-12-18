@@ -10,7 +10,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 
-import { Patient } from '../patients/patients.entity';
+import { Patient } from '../patients/patient.entity';
 import { LocationType } from '../commons/enums/locationType.enum';
 
 @Entity()
