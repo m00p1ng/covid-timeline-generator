@@ -34,7 +34,7 @@ export class TimelineEntry extends BaseEntity {
 
   @Column({
     name: 'detail',
-    nullable: false,
+    nullable: true,
   })
   detail: string;
 
