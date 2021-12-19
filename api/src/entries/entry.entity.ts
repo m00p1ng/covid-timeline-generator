@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 
 import { Patient } from '../patients/patient.entity';
-import { LocationType } from '../commons/enums/locationType.enum';
+import { LocationType } from '../commons/enums/location-type.enum';
 
 @Entity()
 export class Entry extends BaseEntity {
