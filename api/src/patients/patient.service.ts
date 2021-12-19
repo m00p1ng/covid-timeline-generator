@@ -108,6 +108,6 @@ export class PatientService {
       throw new NotFoundException(`Timeline Entry id:${id} is not found`);
     }
 
-    await this.timelineEntryRepository.delete(timelineEntry);
+    await this.timelineEntryRepository.delete(timelineEntryId);
   }
 }
