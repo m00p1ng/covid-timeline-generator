@@ -10,6 +10,7 @@ import {
   useGetAllTimelineEntriesByPatient,
   useCreatePatient,
   useDeleteTimelineEntryByPatient,
+  useDeletePatient,
 } from '../externals/patients'
 
 const useTabs = () => {
@@ -31,6 +32,7 @@ const IndexPage = () => {
   const getAllTimelineEntriesByPatient = useGetAllTimelineEntriesByPatient();
   const createPatient = useCreatePatient();
   const deleteTimelineEntryByPatient = useDeleteTimelineEntryByPatient();
+  const deletePatient = useDeletePatient()
 
   useEffect(() => {
     if (!!selectedTab && selectedTab !== 'Add') {
@@ -69,7 +71,10 @@ const IndexPage = () => {
           patient={getAllPatients.data.find(patient => patient.id === selectedTab)}
           timelineEntries={getAllTimelineEntriesByPatient.data}
           deleteTimelineEntryByPatient={deleteTimelineEntryByPatient.fetch}
+          deletePatient={deletePatient.fetch}
           getAllTimelineEntriesByPatient={getAllTimelineEntriesByPatient.fetch}
+          getAllPatients={getAllPatients.fetch}
+          setSelectedTab={setSelectedTab}
         />
       )}
     </Layout>

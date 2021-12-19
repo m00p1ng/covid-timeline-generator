@@ -8,6 +8,9 @@ interface TimelineProps {
   timelineEntries: TimelineEntry[];
   deleteTimelineEntryByPatient: any;
   getAllTimelineEntriesByPatient: any;
+  deletePatient: any;
+  getAllPatients: any;
+  setSelectedTab: any;
 }
 
 const Timeline = ({
@@ -15,10 +18,29 @@ const Timeline = ({
   timelineEntries,
   deleteTimelineEntryByPatient,
   getAllTimelineEntriesByPatient,
+  deletePatient,
+  getAllPatients,
+  setSelectedTab,
 }: TimelineProps) => {
+  const onDeletePatient = async () => {
+    await deletePatient({
+      url: `/patients/${patient.id}`
+    });
+    setSelectedTab(null);
+    await getAllPatients();
+  }
+
   return (
     <div>
-      <h3 className="primary-text">Timeline</h3>
+      <div className="flex flex-row justify-between">
+        <h3 className="primary-text">Timeline</h3>
+        <button
+          className="button danger-button"
+          onClick={onDeletePatient}
+        >
+          Remove Patient
+        </button>
+      </div>
 
       <div className="grid grid-cols-12 gap-8 mt-3">
         <div className="col-span-8">

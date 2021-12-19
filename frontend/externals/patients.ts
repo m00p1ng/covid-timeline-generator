@@ -58,3 +58,17 @@ export const useDeleteTimelineEntryByPatient = () => {
     fetch,
   }
 }
+
+export const useDeletePatient = () => {
+  const [{ data, loading, error }, fetch] = useAxios({
+    url: `/patients/null`,
+    method: 'DELETE',
+  }, { manual: true })
+
+  return {
+    data,
+    loading,
+    error,
+    fetch,
+  }
+}
