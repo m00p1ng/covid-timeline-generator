@@ -35,3 +35,21 @@ html {
 .primary-text {
   color: var(--yellow);
 }
+
+div, h1, h2, h3, p {
+  color: var(--white);
+}
+
+.patient-tab-item {
+  height: 100px;
+  width: 100px;
+  border: 1px solid var(--light-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.patient-tab {
+  display: flex;
+}
