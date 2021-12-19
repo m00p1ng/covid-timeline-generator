@@ -36,4 +36,8 @@ export class PatientService {
 
     return result;
   }
+
+  public async findAll(): Promise<Patient[]> {
+    return this.patientRepository.find();
+  }
 }
