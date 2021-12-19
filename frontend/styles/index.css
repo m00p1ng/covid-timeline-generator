@@ -13,6 +13,10 @@
     @apply text-4xl;
     @apply font-medium;
   }
+  h4 {
+    @apply text-3xl;
+    @apply font-normal;
+  }
 }
 
 @tailwind components;

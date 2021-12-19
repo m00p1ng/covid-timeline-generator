@@ -33,6 +33,17 @@ const transformTimelineEntriesToDateGroup = (timelineEntries: TimelineEntry[]): 
   return result;
 }
 
+const findVisitedPlaces = (timelineEntries: TimelineEntry[]): string[] => {
+  const result = _(timelineEntries)
+    .map(timelineEntries => timelineEntries.location)
+    .filter(location => !!location)
+    .uniq()
+    .sort()
+    .value()
+
+  return result;
+}
+
 const TimelineDate = ({
   date,
   timelineEntries,
@@ -79,6 +90,7 @@ const TimelineDetail = ({
   getAllTimelineEntriesByPatient
 }: TimelineDetailProps) => {
   const timelineGroup: TimelineGroup[] = transformTimelineEntriesToDateGroup(timelineEntries);
+  const visitedPlaces: string[] = findVisitedPlaces(timelineEntries)
 
   const deleteTimelineEntryByPatientId = (patientId) => async (timelineEntryId) => {
     await deleteTimelineEntryByPatient({
@@ -108,6 +120,15 @@ const TimelineDetail = ({
 
       {timelineGroup.length === 0 && (
         <h3 className="text-center">No entry</h3>
+      )}
+
+      {timelineGroup.length > 0 && (
+        <div className="mt-12">
+          <h4 className="primary-text mb-2">Visited Places</h4>
+          {visitedPlaces.map((place) => (
+            <span className="mr-4 text-xl">{place}</span>
+          ))}
+        </div>
       )}
     </div>
   )
