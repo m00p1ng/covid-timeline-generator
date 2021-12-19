@@ -46,8 +46,8 @@ const Timeline = ({
         </button>
       </div>
 
-      <div className="grid grid-cols-12 gap-8 mt-3">
-        <div className="col-span-8">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 mt-3">
+        <div className="lg:col-span-2 md:col-span-1 sm:col-span-1">
           <TimelineDetail
             patient={patient}
             timelineEntries={timelineEntries}
@@ -55,7 +55,7 @@ const Timeline = ({
             getAllTimelineEntriesByPatient={getAllTimelineEntriesByPatient}
           />
         </div>
-        <div className="col-span-4">
+        <div className="lg:col-span-1 md:col-span-1 sm:col-span-1">
           <TimelineEntryForm
             patientId={patient.id}
             createTimelineEntryByPatient={createTimelineEntryByPatient}

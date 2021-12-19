@@ -22,7 +22,7 @@ const TimelineEntryForm = ({
       url: `/patients/${patientId}/timeline-entries`,
       data: {
         timeFrom,
-        timeTo: timeFrom.slice(0, 11) + timeTo,
+        timeTo: timeFrom?.slice(0, 11) + timeTo,
         location,
         locationType,
         detail,

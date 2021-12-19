@@ -1,7 +1,20 @@
 import useAxios from 'axios-hooks'
+import { useEffect } from 'react'
 
 import { Patient } from '../interfaces/Patient'
 import { TimelineEntry } from '../interfaces/TimelineEntry'
+
+const useLogError = (error) => {
+  useEffect(() => {
+    if (error) {
+      if (Array.isArray(error?.response?.data?.message)) {
+        alert(error?.response?.data?.message?.join('\n'))
+      } else {
+        alert(error?.response?.data?.message)
+      }
+    }
+  }, [error])
+}
 
 export const useGetAllPatients = () => {
   const [{ data, loading, error }, fetch] = useAxios<Patient[]>({
@@ -37,6 +50,8 @@ export const useCreatePatient = () => {
     method: 'POST',
   }, { manual: true })
 
+  useLogError(error)
+
   return {
     data,
     loading,
@@ -50,6 +65,8 @@ export const useCreateTimelineEntryByPatient = () => {
     url: `/patients/null/timeline-entries`,
     method: 'POST',
   }, { manual: true })
+
+  useLogError(error)
 
   return {
     data,
@@ -65,6 +82,8 @@ export const useDeleteTimelineEntryByPatient = () => {
     method: 'DELETE',
   }, { manual: true })
 
+  useLogError(error)
+
   return {
     data,
     loading,
@@ -78,6 +97,8 @@ export const useDeletePatient = () => {
     url: `/patients/null`,
     method: 'DELETE',
   }, { manual: true })
+
+  useLogError(error)
 
   return {
     data,

@@ -28,9 +28,9 @@ const PatientInfoForm = ({ createPatient, getAllPatients, setSelectedTab }: Pati
     <div>
       <h3 className="primary-text">Patient Information</h3>
       <div className="patient-info-form-container mt-3">
-        <div className="grid grid-cols-12 gap-4 mb-6">
+        <div className="grid md:grid-cols-12 gap-4 mb-6">
 
-          <div className="form-group col-span-3">
+          <div className="form-group md:col-span-3">
             <label>Gender</label>
             <select
               value={gender}
@@ -41,7 +41,7 @@ const PatientInfoForm = ({ createPatient, getAllPatients, setSelectedTab }: Pati
             </select>
           </div>
 
-          <div className="form-group col-span-3">
+          <div className="form-group md:col-span-3">
             <label>Age</label>
             <input
               type="number"
@@ -53,7 +53,7 @@ const PatientInfoForm = ({ createPatient, getAllPatients, setSelectedTab }: Pati
             />
           </div>
 
-          <div className="form-group col-span-6">
+          <div className="form-group md:col-span-6">
             <label>Occupation</label>
             <input
               type="text"
