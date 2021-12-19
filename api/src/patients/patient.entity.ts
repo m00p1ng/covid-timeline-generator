@@ -8,7 +8,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 
-import { Entry } from '../entries/entry.entity';
+import { TimelineEntry } from '../timeline-entries/timeline-entry.entity';
 import { Gender } from '../commons/enums/gender.enum';
 
 @Entity()
@@ -34,8 +34,8 @@ export class Patient {
   })
   occupation: string;
 
-  @OneToMany(() => Entry, (entry) => entry.patient)
-  entries: Entry[];
+  @OneToMany(() => TimelineEntry, (timelineEntry) => timelineEntry.patient)
+  timelineEntries: TimelineEntry[];
 
   @CreateDateColumn({
     name: 'created_at',

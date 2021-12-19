@@ -14,7 +14,7 @@ import { Patient } from '../patients/patient.entity';
 import { LocationType } from '../commons/enums/location-type.enum';
 
 @Entity()
-export class Entry extends BaseEntity {
+export class TimelineEntry extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -50,7 +50,7 @@ export class Entry extends BaseEntity {
   })
   location: string;
 
-  @ManyToOne(() => Patient, (patient) => patient.entries)
+  @ManyToOne(() => Patient, (patient) => patient.timelineEntries)
   @JoinColumn({ name: 'patient_id' })
   patient: Patient;
 

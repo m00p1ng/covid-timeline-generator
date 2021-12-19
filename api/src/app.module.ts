@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import { DatabaseModule } from './database/database.module';
 import { PatientModule } from './patients/patient.module';
-import { EntityModule } from './entries/entry.module';
+import { TimelineEntryModule } from './timeline-entries/timeline-entry.module';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { EntityModule } from './entries/entry.module';
     }),
     DatabaseModule,
     PatientModule,
-    EntityModule,
+    TimelineEntryModule,
   ],
   controllers: [],
   providers: [],
