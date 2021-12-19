@@ -1,11 +1,40 @@
-import Layout from '../components/Layout'
+import { useState } from 'react'
 
-const IndexPage = () => (
-  <Layout>
-    <h1>Hello Tailwind!</h1>
-    <h2>Hello Tailwind!</h2>
-    <h3>Hello Tailwind!</h3>
-  </Layout>
-)
+import Layout from '../components/Layout/Layout';
+import PatientTabs from '../components/PatientTabs/PatientTabs';
 
-export default IndexPage
+import { useGetAllPatient } from '../externals/patients'
+
+const useTabs = () => {
+  const [selected, setSelected] = useState<string | number>();
+
+  const setSelectedTab = (tab: string | number): void => {
+    setSelected(tab);
+  }
+
+  return {
+    selectedTab: selected,
+    setSelectedTab,
+  }
+}
+
+const IndexPage = () => {
+  const { selectedTab, setSelectedTab } = useTabs()
+  const getAllPatients = useGetAllPatient();
+
+  if (getAllPatients.loading) {
+    return <div>Loading...</div>
+  }
+
+  return (
+    <Layout>
+      <PatientTabs
+        patients={getAllPatients.data}
+        selectedId={selectedTab}
+        setSelectedTab={setSelectedTab}
+      />
+    </Layout>
+  )
+}
+
+export default IndexPage;
