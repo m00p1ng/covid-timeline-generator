@@ -1,7 +1,7 @@
-import { 
-  BaseEntity, 
-  Entity, 
-  PrimaryGeneratedColumn, 
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
   Column,
   ManyToOne,
   JoinColumn,
@@ -18,14 +18,14 @@ export class Entry extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ 
+  @Column({
     name: 'time_from',
     type: 'timestamptz',
     nullable: false,
   })
   timeFrom: Date;
 
-  @Column({ 
+  @Column({
     name: 'time_to',
     type: 'timestamptz',
     nullable: false,
@@ -38,19 +38,19 @@ export class Entry extends BaseEntity {
   })
   detail: string;
 
-  @Column({ 
+  @Column({
     name: 'location_type',
     nullable: false,
   })
   locationType: LocationType;
 
-  @Column({ 
+  @Column({
     name: 'location',
     nullable: false,
   })
   location: string;
 
-  @ManyToOne(() => Patient, patient => patient.entries)
+  @ManyToOne(() => Patient, (patient) => patient.entries)
   @JoinColumn({ name: 'patient_id' })
   patient: Patient;
 
@@ -68,9 +68,9 @@ export class Entry extends BaseEntity {
   })
   updatedAt: Date;
 
-  @DeleteDateColumn({ 
-    name: 'deleted_at', 
-    type: 'timestamptz', 
+  @DeleteDateColumn({
+    name: 'deleted_at',
+    type: 'timestamptz',
     nullable: true,
   })
   deletedAt: Date;

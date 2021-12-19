@@ -1,9 +1,9 @@
-import { 
-  BaseEntity, 
-  Entity, 
-  PrimaryGeneratedColumn, 
-  Column, 
-  OneToMany, 
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
@@ -16,25 +16,25 @@ export class Patient extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ 
+  @Column({
     name: 'gender',
     nullable: false,
   })
   gender: string;
 
-  @Column({ 
+  @Column({
     name: 'age',
     nullable: false,
   })
   age: number;
 
-  @Column({ 
+  @Column({
     name: 'occupation',
     nullable: false,
   })
   occupation: string;
 
-  @OneToMany(() => Entry, entry => entry.patient)
+  @OneToMany(() => Entry, (entry) => entry.patient)
   entries: Entry[];
 
   @CreateDateColumn({
@@ -51,9 +51,9 @@ export class Patient extends BaseEntity {
   })
   updatedAt: Date;
 
-  @DeleteDateColumn({ 
-    name: 'deleted_at', 
-    type: 'timestamptz', 
+  @DeleteDateColumn({
+    name: 'deleted_at',
+    type: 'timestamptz',
     nullable: true,
   })
   deletedAt: Date;
