@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post, Param, Delete } from '@nestjs/common';
 
 import { PatientService } from './patient.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
@@ -23,5 +23,10 @@ export class PatientController {
   @Get(':id')
   public async getPatientById(@Param('id') id: string): Promise<Patient> {
     return this.patientService.findById(id);
+  }
+
+  @Delete(':id')
+  public async deletePatientById(@Param('id') id: string): Promise<void> {
+    return this.patientService.deleteById(id);
   }
 }

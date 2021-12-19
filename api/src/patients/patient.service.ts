@@ -54,4 +54,9 @@ export class PatientService {
 
     return patient;
   }
+
+  public async deleteById(id: string): Promise<any> {
+    await this.findById(id);
+    await this.patientRepository.delete(id);
+  }
 }
