@@ -8,11 +8,14 @@ type TimelineGroup = [string, TimelineEntry[]];
 interface TimelineDateProps {
   date: string;
   timelineEntries: TimelineEntry[];
+  deleteTimelineEntryByPatient: any;
 }
 
 interface TimelineDetailProps {
   patient: Patient;
-  timelineEntries: TimelineEntry[]
+  timelineEntries: TimelineEntry[];
+  deleteTimelineEntryByPatient: any;
+  getAllTimelineEntriesByPatient: any;
 }
 
 const transformTimelineEntriesToDateGroup = (timelineEntries: TimelineEntry[]): TimelineGroup[] => {
@@ -30,12 +33,17 @@ const transformTimelineEntriesToDateGroup = (timelineEntries: TimelineEntry[]): 
   return result;
 }
 
-const TimelineDate = ({ date, timelineEntries }: TimelineDateProps) => {
+const TimelineDate = ({
+  date,
+  timelineEntries,
+  deleteTimelineEntryByPatient
+}: TimelineDateProps) => {
   return (
     <div>
-      <p className="primary-text mb-4">
+      <p className="primary-text text-2xl mb-4">
         {date.split('-').reverse().join('/')}
       </p>
+
       <div className="timeline-entries-container">
         {timelineEntries.map((timelineEntry) => (
           <div key={timelineEntry.id} className="grid grid-cols-12 gap-2 mb-3">
@@ -44,8 +52,14 @@ const TimelineDate = ({ date, timelineEntries }: TimelineDateProps) => {
                 {timelineEntry.timeFrom.slice(11, 16)} - {timelineEntry.timeTo.slice(11, 16)}
               </p>
             </div>
-            <div className="col-span-9">
+            <div className="col-span-9 timeline-entry-container">
               <p className="text-xl">{timelineEntry.detail}</p>
+              <button
+                className="timeline-close-button"
+                onClick={() => deleteTimelineEntryByPatient(timelineEntry.id)}
+              >
+                x
+              </button>
               <p className="subtitle-text">
                 {_.startCase(_.toLower(timelineEntry.locationType))}
                 {timelineEntry.location && ` - ${timelineEntry.location}`}
@@ -58,8 +72,23 @@ const TimelineDate = ({ date, timelineEntries }: TimelineDateProps) => {
   )
 }
 
-const TimelineDetail = ({ patient, timelineEntries }: TimelineDetailProps) => {
-  const timelineGroup: TimelineGroup[] = transformTimelineEntriesToDateGroup(timelineEntries)
+const TimelineDetail = ({
+  patient,
+  timelineEntries,
+  deleteTimelineEntryByPatient,
+  getAllTimelineEntriesByPatient
+}: TimelineDetailProps) => {
+  const timelineGroup: TimelineGroup[] = transformTimelineEntriesToDateGroup(timelineEntries);
+
+  const deleteTimelineEntryByPatientId = (patientId) => async (timelineEntryId) => {
+    await deleteTimelineEntryByPatient({
+      url: `/patients/${patientId}/timeline-entries/${timelineEntryId}`
+    })
+    await getAllTimelineEntriesByPatient({
+      url: `/patients/${patientId}/timeline-entries`
+    })
+  }
+
   return (
     <div className="timeline-detail-container">
       <div className="patient-info-container mb-8">
@@ -73,6 +102,7 @@ const TimelineDetail = ({ patient, timelineEntries }: TimelineDetailProps) => {
           key={timelineGroupDetail[0]}
           date={timelineGroupDetail[0]}
           timelineEntries={timelineGroupDetail[1]}
+          deleteTimelineEntryByPatient={deleteTimelineEntryByPatientId(patient.id)}
         />
       ))}
 

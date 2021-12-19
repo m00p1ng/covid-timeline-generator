@@ -106,3 +106,13 @@ input, select {
   padding: 20px;
   border-radius: 20px;
 }
+
+.timeline-entry-container {
+  position: relative; 
+}
+
+.timeline-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

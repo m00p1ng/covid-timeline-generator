@@ -6,9 +6,16 @@ import TimelineEntryForm from "../TimelineEntryForm/TimelineEntryForm";
 interface TimelineProps {
   patient: Patient;
   timelineEntries: TimelineEntry[];
+  deleteTimelineEntryByPatient: any;
+  getAllTimelineEntriesByPatient: any;
 }
 
-const Timeline = ({ patient, timelineEntries }: TimelineProps) => {
+const Timeline = ({
+  patient,
+  timelineEntries,
+  deleteTimelineEntryByPatient,
+  getAllTimelineEntriesByPatient,
+}: TimelineProps) => {
   return (
     <div>
       <h3 className="primary-text">Timeline</h3>
@@ -18,6 +25,8 @@ const Timeline = ({ patient, timelineEntries }: TimelineProps) => {
           <TimelineDetail
             patient={patient}
             timelineEntries={timelineEntries}
+            deleteTimelineEntryByPatient={deleteTimelineEntryByPatient}
+            getAllTimelineEntriesByPatient={getAllTimelineEntriesByPatient}
           />
         </div>
         <div className="col-span-4">
