@@ -14,7 +14,7 @@ import { CreateTimelineEntryDto } from './dto/create-timeline-entry.dto';
 import { Patient } from './patient.entity';
 import { TimelineEntry } from 'src/patients/timeline-entry.entity';
 
-@Controller('patients')
+@Controller('api/patients')
 @SerializeOptions({
   strategy: 'excludeAll',
 })
