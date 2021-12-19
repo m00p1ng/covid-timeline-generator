@@ -8,7 +8,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 
-import { TimelineEntry } from '../timeline-entries/timeline-entry.entity';
+import { TimelineEntry } from './timeline-entry.entity';
 import { Gender } from '../commons/enums/gender.enum';
 
 @Entity()

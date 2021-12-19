@@ -8,6 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Patient } from './patient.entity';
+import { TimelineEntry } from './timeline-entry.entity';
 import { CreatePatientDto } from './dto/create-patient.dto';
 
 @Injectable()
@@ -15,6 +16,8 @@ export class PatientService {
   constructor(
     @InjectRepository(Patient)
     private readonly patientRepository: Repository<Patient>,
+    @InjectRepository(TimelineEntry)
+    private readonly timelineEntryRepository: Repository<TimelineEntry>,
     private readonly configService: ConfigService,
   ) {}
 
@@ -55,8 +58,20 @@ export class PatientService {
     return patient;
   }
 
-  public async deleteById(id: string): Promise<any> {
+  public async deleteById(id: string): Promise<void> {
     await this.findById(id);
     await this.patientRepository.delete(id);
+  }
+
+  public async getTimelineEntriesByPatientId(
+    id: string,
+  ): Promise<TimelineEntry[]> {
+    const patient = await this.findById(id);
+
+    const timelineEntries = await this.timelineEntryRepository.find({
+      where: { patient },
+    });
+
+    return timelineEntries;
   }
 }
