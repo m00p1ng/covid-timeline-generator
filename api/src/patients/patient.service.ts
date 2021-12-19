@@ -94,4 +94,20 @@ export class PatientService {
 
     return result;
   }
+
+  public async deleteTimelineEntryByPatientId(
+    id: string,
+    timelineEntryId: string,
+  ): Promise<void> {
+    await this.findById(id);
+    const timelineEntry = await this.timelineEntryRepository.findOne(
+      timelineEntryId,
+    );
+
+    if (!timelineEntry) {
+      throw new NotFoundException(`Timeline Entry id:${id} is not found`);
+    }
+
+    await this.timelineEntryRepository.delete(timelineEntry);
+  }
 }

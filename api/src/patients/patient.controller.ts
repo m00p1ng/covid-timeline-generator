@@ -49,4 +49,15 @@ export class PatientController {
       timelineEntry,
     );
   }
+
+  @Delete(':id/timeline-entries/:timelineEntryId')
+  public async deleteTimelineEntryByPatientId(
+    @Param('id') id: string,
+    @Param('timelineEntryId') timelineEntryId: string,
+  ): Promise<void> {
+    return this.patientService.deleteTimelineEntryByPatientId(
+      id,
+      timelineEntryId,
+    );
+  }
 }
