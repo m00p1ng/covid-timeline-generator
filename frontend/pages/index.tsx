@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Layout from '../components/Layout/Layout';
 import PatientInfoForm from '../components/PatientInfoForm/PatientInfoForm';
 import PatientTabs from '../components/PatientTabs/PatientTabs';
 import Timeline from '../components/Timeline/Timeline';
 
-import { useGetAllPatients } from '../externals/patients'
+import { useGetAllPatients, useGetAllTimelineEntriesByPatient } from '../externals/patients'
 
 const useTabs = () => {
   const [selected, setSelected] = useState<string | number>();
@@ -23,6 +23,15 @@ const useTabs = () => {
 const IndexPage = () => {
   const { selectedTab, setSelectedTab } = useTabs()
   const getAllPatients = useGetAllPatients();
+  const getAllTimelineEntriesByPatient = useGetAllTimelineEntriesByPatient();
+
+  useEffect(() => {
+    if (!!selectedTab && selectedTab !== 'Add') {
+      getAllTimelineEntriesByPatient.fetch({
+        url: `/patients/${selectedTab}/timeline-entries`
+      })
+    }
+  }, [selectedTab])
 
   if (getAllPatients.loading) {
     return <div>Loading...</div>
@@ -45,7 +54,10 @@ const IndexPage = () => {
       )}
 
       {!!selectedTab && selectedTab !== 'Add' && (
-        <Timeline />
+        <Timeline
+          patient={getAllPatients.data.find(patient => patient.id === selectedTab)}
+          timelineEntries={getAllTimelineEntriesByPatient.data}
+        />
       )}
     </Layout>
   )

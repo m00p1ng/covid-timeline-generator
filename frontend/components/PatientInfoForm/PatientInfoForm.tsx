@@ -1,7 +1,7 @@
 const PatientInfoForm = () => (
   <div>
     <h3 className="primary-text">Patient Information</h3>
-    <div className="patient-info-container mt-3">
+    <div className="patient-info-form-container mt-3">
       <div className="grid grid-cols-12 gap-4 mb-6">
         <div className="form-group col-span-3">
           <label>Gender</label>
