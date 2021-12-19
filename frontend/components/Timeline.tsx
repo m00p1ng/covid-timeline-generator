@@ -1,3 +1,5 @@
+import { AxiosRequestConfig, AxiosPromise } from 'axios'
+
 import { Patient } from "../interfaces/Patient";
 import { TimelineEntry } from "../interfaces/TimelineEntry";
 import TimelineDetail from "./TimelineDetail";
@@ -6,10 +8,11 @@ import TimelineEntryForm from "./TimelineEntryForm";
 interface TimelineProps {
   patient: Patient;
   timelineEntries: TimelineEntry[];
-  deleteTimelineEntryByPatient: any;
-  getAllTimelineEntriesByPatient: any;
-  deletePatient: any;
-  getAllPatients: any;
+  deleteTimelineEntryByPatient: (config: AxiosRequestConfig<any>) => AxiosPromise<any>;
+  getAllTimelineEntriesByPatient: (config: AxiosRequestConfig<any>) => AxiosPromise<TimelineEntry[]>;
+  deletePatient: (config: AxiosRequestConfig<any>) => AxiosPromise<any>;
+  getAllPatients: () => AxiosPromise<Patient[]>;
+  createTimelineEntryByPatient: (config: AxiosRequestConfig<any>) => AxiosPromise<TimelineEntry>;
   setSelectedTab: any;
 }
 
@@ -20,6 +23,7 @@ const Timeline = ({
   getAllTimelineEntriesByPatient,
   deletePatient,
   getAllPatients,
+  createTimelineEntryByPatient,
   setSelectedTab,
 }: TimelineProps) => {
   const onDeletePatient = async () => {
@@ -52,7 +56,11 @@ const Timeline = ({
           />
         </div>
         <div className="col-span-4">
-          <TimelineEntryForm />
+          <TimelineEntryForm
+            patientId={patient.id}
+            createTimelineEntryByPatient={createTimelineEntryByPatient}
+            getAllTimelineEntriesByPatient={getAllTimelineEntriesByPatient}
+          />
         </div>
       </div>
     </div>

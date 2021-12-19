@@ -40,7 +40,7 @@ const TimelineDate = ({
 }: TimelineDateProps) => {
   return (
     <div>
-      <p className="primary-text text-2xl mb-4">
+      <p className="primary-text text-2xl mb-3 mt-4">
         {date.split('-').reverse().join('/')}
       </p>
 

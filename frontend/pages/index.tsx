@@ -7,10 +7,11 @@ import Timeline from '../components/Timeline';
 
 import {
   useGetAllPatients,
-  useGetAllTimelineEntriesByPatient,
   useCreatePatient,
-  useDeleteTimelineEntryByPatient,
   useDeletePatient,
+  useGetAllTimelineEntriesByPatient,
+  useCreateTimelineEntryByPatient,
+  useDeleteTimelineEntryByPatient,
 } from '../externals/patients'
 
 const useTabs = () => {
@@ -28,11 +29,14 @@ const useTabs = () => {
 
 const IndexPage = () => {
   const { selectedTab, setSelectedTab } = useTabs()
+
   const getAllPatients = useGetAllPatients();
-  const getAllTimelineEntriesByPatient = useGetAllTimelineEntriesByPatient();
   const createPatient = useCreatePatient();
-  const deleteTimelineEntryByPatient = useDeleteTimelineEntryByPatient();
   const deletePatient = useDeletePatient()
+
+  const getAllTimelineEntriesByPatient = useGetAllTimelineEntriesByPatient();
+  const createTimelineEntryByPatient = useCreateTimelineEntryByPatient();
+  const deleteTimelineEntryByPatient = useDeleteTimelineEntryByPatient();
 
   useEffect(() => {
     if (!!selectedTab && selectedTab !== 'Add') {
@@ -74,6 +78,7 @@ const IndexPage = () => {
           deletePatient={deletePatient.fetch}
           getAllTimelineEntriesByPatient={getAllTimelineEntriesByPatient.fetch}
           getAllPatients={getAllPatients.fetch}
+          createTimelineEntryByPatient={createTimelineEntryByPatient.fetch}
           setSelectedTab={setSelectedTab}
         />
       )}

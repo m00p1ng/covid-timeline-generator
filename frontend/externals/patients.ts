@@ -17,6 +17,20 @@ export const useGetAllPatients = () => {
   }
 }
 
+export const useGetAllTimelineEntriesByPatient = () => {
+  const [{ data, loading, error }, fetch] = useAxios<TimelineEntry[]>({
+    url: `/patients/null/timeline-entries`,
+    method: 'GET',
+  }, { manual: true })
+
+  return {
+    data,
+    loading,
+    error,
+    fetch,
+  }
+}
+
 export const useCreatePatient = () => {
   const [{ data, loading, error }, fetch] = useAxios<Patient>({
     url: '/patients',
@@ -31,10 +45,10 @@ export const useCreatePatient = () => {
   }
 }
 
-export const useGetAllTimelineEntriesByPatient = () => {
-  const [{ data, loading, error }, fetch] = useAxios<TimelineEntry[]>({
+export const useCreateTimelineEntryByPatient = () => {
+  const [{ data, loading, error }, fetch] = useAxios<TimelineEntry>({
     url: `/patients/null/timeline-entries`,
-    method: 'GET',
+    method: 'POST',
   }, { manual: true })
 
   return {
