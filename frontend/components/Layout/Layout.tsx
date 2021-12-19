@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 
 type Props = {
@@ -13,11 +12,13 @@ const Layout = ({ children, title = 'COVID Timeline Generator' }: Props) => (
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <link rel="preconnect" href="https://fonts.googleapis.com" /> 
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" /> 
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
       <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet" />
     </Head>
-    {children}
+    <div className="container mx-auto">
+      {children}
+    </div>
   </div>
 )
 
