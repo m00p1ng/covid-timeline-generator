@@ -40,6 +40,10 @@ div, h1, h2, h3, p {
   color: var(--white);
 }
 
+input, select {
+  color: #000;
+}
+
 .patient-tab-item {
   height: 100px;
   width: 100px;
@@ -50,6 +54,17 @@ div, h1, h2, h3, p {
   flex-direction: column;
 }
 
-.patient-tab {
-  display: flex;
+.patient-info-container {
+  padding: 20px;
+  border: 1px solid var(--light-blue);
+}
+
+.button {
+  padding: 5px 15px;
+  border-radius: 3px;
+}
+
+.primary-button {
+  background-color: var(--yellow);
+  color: #000;
 }
