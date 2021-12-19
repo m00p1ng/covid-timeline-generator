@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   Entity,
   PrimaryGeneratedColumn,
   Column,
@@ -10,9 +9,10 @@ import {
 } from 'typeorm';
 
 import { Entry } from '../entries/entry.entity';
+import { Gender } from '../commons/enums/gender.enum';
 
 @Entity()
-export class Patient extends BaseEntity {
+export class Patient {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -20,7 +20,7 @@ export class Patient extends BaseEntity {
     name: 'gender',
     nullable: false,
   })
-  gender: string;
+  gender: Gender;
 
   @Column({
     name: 'age',
