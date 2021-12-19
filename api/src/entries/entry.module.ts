@@ -10,4 +10,4 @@ import { EntryService } from './entry.service';
   providers: [EntryService],
   controllers: [EntryController],
 })
-export class PatientsModule {}
+export class EntityModule {}

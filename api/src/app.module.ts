@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { DatabaseModule } from './database/database.module';
+import { PatientModule } from './patients/patient.module';
+import { EntityModule } from './entries/entry.module';
 
 @Module({
   imports: [
@@ -10,6 +12,8 @@ import { DatabaseModule } from './database/database.module';
       isGlobal: true,
     }),
     DatabaseModule,
+    PatientModule,
+    EntityModule,
   ],
   controllers: [],
   providers: [],
