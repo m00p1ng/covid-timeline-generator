@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 
-import { Patient } from '../../interfaces/Patient';
+import { Patient } from '../interfaces/Patient';
 
 interface PatientTabItemProps {
   index: number;

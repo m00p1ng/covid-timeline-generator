@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 
-import Layout from '../components/Layout/Layout';
-import PatientInfoForm from '../components/PatientInfoForm/PatientInfoForm';
-import PatientTabs from '../components/PatientTabs/PatientTabs';
-import Timeline from '../components/Timeline/Timeline';
+import Layout from '../components/Layout';
+import PatientInfoForm from '../components/PatientInfoForm';
+import PatientTabs from '../components/PatientTabs';
+import Timeline from '../components/Timeline';
 
 import {
   useGetAllPatients,

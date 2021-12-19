@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
-import { Patient } from "../../interfaces/Patient";
-import { TimelineEntry } from "../../interfaces/TimelineEntry";
+import { Patient } from "../interfaces/Patient";
+import { TimelineEntry } from "../interfaces/TimelineEntry";
 
 type TimelineGroup = [string, TimelineEntry[]];
 

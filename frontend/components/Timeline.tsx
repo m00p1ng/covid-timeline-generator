@@ -1,7 +1,7 @@
-import { Patient } from "../../interfaces/Patient";
-import { TimelineEntry } from "../../interfaces/TimelineEntry";
-import TimelineDetail from "../TimelineDetail/TimelineDetail";
-import TimelineEntryForm from "../TimelineEntryForm/TimelineEntryForm";
+import { Patient } from "../interfaces/Patient";
+import { TimelineEntry } from "../interfaces/TimelineEntry";
+import TimelineDetail from "./TimelineDetail";
+import TimelineEntryForm from "./TimelineEntryForm";
 
 interface TimelineProps {
   patient: Patient;
