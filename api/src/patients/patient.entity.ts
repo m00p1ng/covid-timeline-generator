@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
+import { Expose } from 'class-transformer';
 
 import { TimelineEntry } from './timeline-entry.entity';
 import { Gender } from '../commons/enums/gender.enum';
@@ -14,27 +15,32 @@ import { Gender } from '../commons/enums/gender.enum';
 @Entity()
 export class Patient {
   @PrimaryGeneratedColumn()
+  @Expose()
   id: number;
 
   @Column({
     name: 'gender',
     nullable: false,
   })
+  @Expose()
   gender: Gender;
 
   @Column({
     name: 'age',
     nullable: false,
   })
+  @Expose()
   age: number;
 
   @Column({
     name: 'occupation',
     nullable: false,
   })
+  @Expose()
   occupation: string;
 
   @OneToMany(() => TimelineEntry, (timelineEntry) => timelineEntry.patient)
+  @Expose()
   timelineEntries: TimelineEntry[];
 
   @CreateDateColumn({

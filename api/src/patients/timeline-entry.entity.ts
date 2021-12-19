@@ -9,6 +9,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
+import { Expose } from 'class-transformer';
 
 import { Patient } from './patient.entity';
 import { LocationType } from '../commons/enums/location-type.enum';
@@ -16,6 +17,7 @@ import { LocationType } from '../commons/enums/location-type.enum';
 @Entity()
 export class TimelineEntry extends BaseEntity {
   @PrimaryGeneratedColumn()
+  @Expose()
   id: number;
 
   @Column({
@@ -23,6 +25,7 @@ export class TimelineEntry extends BaseEntity {
     type: 'timestamptz',
     nullable: false,
   })
+  @Expose()
   timeFrom: Date;
 
   @Column({
@@ -30,24 +33,28 @@ export class TimelineEntry extends BaseEntity {
     type: 'timestamptz',
     nullable: false,
   })
+  @Expose()
   timeTo: Date;
 
   @Column({
     name: 'detail',
     nullable: true,
   })
-  detail: string;
+  @Expose()
+  detail?: string;
 
   @Column({
     name: 'location_type',
     nullable: false,
   })
+  @Expose()
   locationType: LocationType;
 
   @Column({
     name: 'location',
     nullable: false,
   })
+  @Expose()
   location: string;
 
   @ManyToOne(() => Patient, (patient) => patient.timelineEntries)

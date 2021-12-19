@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Param,
+  Delete,
+  SerializeOptions,
+} from '@nestjs/common';
 
 import { PatientService } from './patient.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
@@ -7,6 +15,9 @@ import { Patient } from './patient.entity';
 import { TimelineEntry } from 'src/patients/timeline-entry.entity';
 
 @Controller('patients')
+@SerializeOptions({
+  strategy: 'excludeAll',
+})
 export class PatientController {
   constructor(private readonly patientService: PatientService) {}
 
