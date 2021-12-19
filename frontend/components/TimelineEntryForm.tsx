@@ -35,8 +35,8 @@ const TimelineEntryForm = ({
 
   return (
     <div className="timeline-entry-form-container">
-      <div className="grid grid-cols-12 gap-4 mb-6">
-        <div className="form-group col-span-8">
+      <div className="grid xl:grid-cols-12 gap-4 mb-6">
+        <div className="form-group xl:col-span-8">
           <label>From</label>
           <input
             type="datetime-local"
@@ -45,7 +45,7 @@ const TimelineEntryForm = ({
           />
         </div>
 
-        <div className="form-group col-span-4">
+        <div className="form-group xl:col-span-4">
           <label>Time</label>
           <input
             type="time"
@@ -54,7 +54,7 @@ const TimelineEntryForm = ({
           />
         </div>
 
-        <div className="form-group col-span-12">
+        <div className="form-group xl:col-span-12">
           <label>Detail</label>
           <textarea
             rows={5}
@@ -64,7 +64,7 @@ const TimelineEntryForm = ({
           </textarea>
         </div>
 
-        <div className="form-group col-span-4">
+        <div className="form-group xl:col-span-4">
           <label>Location Type</label>
           <select
             value={locationType}
@@ -77,7 +77,7 @@ const TimelineEntryForm = ({
           </select>
         </div>
 
-        <div className="form-group col-span-8">
+        <div className="form-group xl:col-span-8">
           <label>Location</label>
           <input
             type="text"
