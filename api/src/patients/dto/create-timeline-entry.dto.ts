@@ -9,15 +9,15 @@ export class CreateTimelineEntryDto {
   @IsDateString()
   timeTo: Date;
 
-  @ValidateIf((o) =>
-    [LocationType.INDOOR, LocationType.OUTDOOR].includes(o.locationType),
-  )
   @IsString()
   detail: string;
 
   @IsEnum(LocationType)
   locationType: LocationType;
 
+  @ValidateIf((o) =>
+    [LocationType.INDOOR, LocationType.OUTDOOR].includes(o.locationType),
+  )
   @IsString()
   location: string;
 }
