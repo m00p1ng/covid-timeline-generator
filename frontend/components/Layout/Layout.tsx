@@ -7,7 +7,7 @@ type Props = {
 }
 
 const Layout = ({ children, title = 'COVID Timeline Generator' }: Props) => (
-  <div>
+  <div className="main-background">
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />

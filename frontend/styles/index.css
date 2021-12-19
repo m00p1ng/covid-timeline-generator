@@ -17,3 +17,21 @@
 
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --background: #012d5e;
+  --font-color: #ffffff;
+  --blue: #5882E3;
+  --light-blue: #254870;
+  --yellow: #ffc107;
+  --red: #dc3545;
+  --white: #fff;
+}
+
+html {
+  background-color: var(--background);
+}
+
+.primary-text {
+  color: var(--yellow);
+}
