@@ -1,7 +1,14 @@
+import { Patient } from "../../interfaces/Patient";
+import { TimelineEntry } from "../../interfaces/TimelineEntry";
 import TimelineDetail from "../TimelineDetail/TimelineDetail";
 import TimelineEntryForm from "../TimelineEntryForm/TimelineEntryForm";
 
-const Timeline = ({ patient, timelineEntries }) => {
+interface TimelineProps {
+  patient: Patient;
+  timelineEntries: TimelineEntry[];
+}
+
+const Timeline = ({ patient, timelineEntries }: TimelineProps) => {
   return (
     <div>
       <h3 className="primary-text">Timeline</h3>

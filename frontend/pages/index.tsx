@@ -5,7 +5,11 @@ import PatientInfoForm from '../components/PatientInfoForm/PatientInfoForm';
 import PatientTabs from '../components/PatientTabs/PatientTabs';
 import Timeline from '../components/Timeline/Timeline';
 
-import { useGetAllPatients, useGetAllTimelineEntriesByPatient } from '../externals/patients'
+import {
+  useGetAllPatients,
+  useGetAllTimelineEntriesByPatient,
+  useCreatePatient,
+} from '../externals/patients'
 
 const useTabs = () => {
   const [selected, setSelected] = useState<string | number>();
@@ -24,6 +28,7 @@ const IndexPage = () => {
   const { selectedTab, setSelectedTab } = useTabs()
   const getAllPatients = useGetAllPatients();
   const getAllTimelineEntriesByPatient = useGetAllTimelineEntriesByPatient();
+  const createPatient = useCreatePatient();
 
   useEffect(() => {
     if (!!selectedTab && selectedTab !== 'Add') {
@@ -50,7 +55,11 @@ const IndexPage = () => {
       />
 
       {selectedTab === 'Add' && (
-        <PatientInfoForm />
+        <PatientInfoForm
+          createPatient={createPatient.fetch}
+          getAllPatients={getAllPatients.fetch}
+          setSelectedTab={setSelectedTab}
+        />
       )}
 
       {!!selectedTab && selectedTab !== 'Add' && (
