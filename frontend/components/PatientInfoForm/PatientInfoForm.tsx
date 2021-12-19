@@ -1,4 +1,4 @@
-const PatientInfo = () => (
+const PatientInfoForm = () => (
   <div>
     <h3 className="primary-text">Patient Information</h3>
     <div className="patient-info-container mt-3">
@@ -26,4 +26,4 @@ const PatientInfo = () => (
   </div>
 )
 
-export default PatientInfo
+export default PatientInfoForm;

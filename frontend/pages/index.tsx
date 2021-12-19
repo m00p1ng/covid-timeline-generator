@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import Layout from '../components/Layout/Layout';
-import PatientInfo from '../components/PatientInfo/PatientInfo';
+import PatientInfoForm from '../components/PatientInfoForm/PatientInfoForm';
 import PatientTabs from '../components/PatientTabs/PatientTabs';
 import Timeline from '../components/Timeline/Timeline';
 
@@ -41,7 +41,7 @@ const IndexPage = () => {
       />
 
       {selectedTab === 'Add' && (
-        <PatientInfo />
+        <PatientInfoForm />
       )}
 
       {!!selectedTab && selectedTab !== 'Add' && (
