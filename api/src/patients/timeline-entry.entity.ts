@@ -38,10 +38,10 @@ export class TimelineEntry extends BaseEntity {
 
   @Column({
     name: 'detail',
-    nullable: true,
+    nullable: false,
   })
   @Expose()
-  detail?: string;
+  detail: string;
 
   @Column({
     name: 'location_type',
@@ -52,10 +52,10 @@ export class TimelineEntry extends BaseEntity {
 
   @Column({
     name: 'location',
-    nullable: false,
+    nullable: true,
   })
   @Expose()
-  location: string;
+  location?: string;
 
   @ManyToOne(() => Patient, (patient) => patient.timelineEntries)
   @JoinColumn({ name: 'patient_id' })
