@@ -1,4 +1,8 @@
-import { UnprocessableEntityException, Injectable } from '@nestjs/common';
+import {
+  UnprocessableEntityException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -39,5 +43,15 @@ export class PatientService {
 
   public async findAll(): Promise<Patient[]> {
     return this.patientRepository.find();
+  }
+
+  public async findById(id: string): Promise<Patient> {
+    const patient = await this.patientRepository.findOne(id);
+
+    if (!patient) {
+      throw new NotFoundException(`Patient id:${id} is not found`);
+    }
+
+    return patient;
   }
 }
