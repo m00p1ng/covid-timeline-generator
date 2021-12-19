@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, Param, Delete } from '@nestjs/common';
 
 import { PatientService } from './patient.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
+import { CreateTimelineEntryDto } from './dto/create-timeline-entry.dto';
 import { Patient } from './patient.entity';
 import { TimelineEntry } from 'src/patients/timeline-entry.entity';
 
@@ -36,5 +37,16 @@ export class PatientController {
     @Param('id') id: string,
   ): Promise<TimelineEntry[]> {
     return this.patientService.getTimelineEntriesByPatientId(id);
+  }
+
+  @Post(':id/timeline-entries')
+  public async createTimelineEntryByPatientId(
+    @Param('id') id: string,
+    @Body() timelineEntry: CreateTimelineEntryDto,
+  ): Promise<TimelineEntry> {
+    return this.patientService.createTimelineEntryByPatientId(
+      id,
+      timelineEntry,
+    );
   }
 }

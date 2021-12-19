@@ -10,6 +10,7 @@ import { Repository } from 'typeorm';
 import { Patient } from './patient.entity';
 import { TimelineEntry } from './timeline-entry.entity';
 import { CreatePatientDto } from './dto/create-patient.dto';
+import { CreateTimelineEntryDto } from './dto/create-timeline-entry.dto';
 
 @Injectable()
 export class PatientService {
@@ -73,5 +74,24 @@ export class PatientService {
     });
 
     return timelineEntries;
+  }
+
+  public async createTimelineEntryByPatientId(
+    id: string,
+    timelineEntry: CreateTimelineEntryDto,
+  ): Promise<TimelineEntry> {
+    const patient = await this.findById(id);
+
+    const newTimelineEntry = new TimelineEntry();
+    newTimelineEntry.patient = patient;
+    newTimelineEntry.timeTo = timelineEntry.timeTo;
+    newTimelineEntry.timeFrom = timelineEntry.timeFrom;
+    newTimelineEntry.locationType = timelineEntry.locationType;
+    newTimelineEntry.location = timelineEntry.location;
+    newTimelineEntry.detail = timelineEntry.detail;
+
+    const result = await this.timelineEntryRepository.save(newTimelineEntry);
+
+    return result;
   }
 }
