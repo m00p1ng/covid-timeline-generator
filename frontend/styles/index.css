@@ -68,3 +68,13 @@ input, select {
   background-color: var(--yellow);
   color: #000;
 }
+
+.timeline-detail-container {
+  border: 1px solid var(--yellow);
+  padding: 20px;
+}
+
+.timeline-entry-form-container {
+  padding: 20px;
+  border: 1px solid var(--light-blue);
+}
