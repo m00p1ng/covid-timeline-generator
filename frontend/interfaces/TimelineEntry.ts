@@ -1,4 +1,5 @@
 export type TimelineEntry = {
+  id: number,
   timeFrom: string;
   timeTo: string;
   location?: string;

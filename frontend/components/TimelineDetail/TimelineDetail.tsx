@@ -3,12 +3,19 @@ import _ from 'lodash'
 import { Patient } from "../../interfaces/Patient";
 import { TimelineEntry } from "../../interfaces/TimelineEntry";
 
+type TimelineGroup = [string, TimelineEntry[]];
+
+interface TimelineDateProps {
+  date: string;
+  timelineEntries: TimelineEntry[];
+}
+
 interface TimelineDetailProps {
   patient: Patient;
   timelineEntries: TimelineEntry[]
 }
 
-const transformTimelineEntriesToDateGroup = (timelineEntries: TimelineEntry[]): Object[] => {
+const transformTimelineEntriesToDateGroup = (timelineEntries: TimelineEntry[]): TimelineGroup[] => {
   const result = _(timelineEntries)
     .groupBy(tl => tl.timeFrom.slice(0, 10))
     .entries()
@@ -23,14 +30,14 @@ const transformTimelineEntriesToDateGroup = (timelineEntries: TimelineEntry[]): 
   return result;
 }
 
-const TimelineDate = ({ date, timelineGroup }) => {
+const TimelineDate = ({ date, timelineEntries }: TimelineDateProps) => {
   return (
     <div>
       <p className="primary-text mb-4">
         {date.split('-').reverse().join('/')}
       </p>
       <div className="timeline-entries-container">
-        {timelineGroup.map((timelineEntry) => (
+        {timelineEntries.map((timelineEntry) => (
           <div key={timelineEntry.id} className="grid grid-cols-12 gap-2 mb-3">
             <div className="col-span-3">
               <p className="primary-text">
@@ -52,7 +59,7 @@ const TimelineDate = ({ date, timelineGroup }) => {
 }
 
 const TimelineDetail = ({ patient, timelineEntries }: TimelineDetailProps) => {
-  const timelineGroup = transformTimelineEntriesToDateGroup(timelineEntries)
+  const timelineGroup: TimelineGroup[] = transformTimelineEntriesToDateGroup(timelineEntries)
   return (
     <div className="timeline-detail-container">
       <div className="patient-info-container mb-8">
@@ -65,7 +72,7 @@ const TimelineDetail = ({ patient, timelineEntries }: TimelineDetailProps) => {
         <TimelineDate
           key={timelineGroupDetail[0]}
           date={timelineGroupDetail[0]}
-          timelineGroup={timelineGroupDetail[1]}
+          timelineEntries={timelineGroupDetail[1]}
         />
       ))}
 
